@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
         val tabLayout = findViewById<TabLayout>(R.id.tabsLayout)
         val viewPager = findViewById<ViewPager2>(R.id.viewPager2)
@@ -55,11 +55,11 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout,viewPager){
             tab,position ->
             when(position){
-               1 -> {
-                   tab.text = "Home fragment"
-               }
+                1 -> {
+                   tab.text = "Beranda"
+                }
                 2 -> {
-                    tab.text = "List Fragment"
+                    tab.text = "List"
                 }
             }
         }.attach()
