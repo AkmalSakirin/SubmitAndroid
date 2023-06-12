@@ -55,10 +55,10 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout,viewPager){
             tab,position ->
             when(position){
-                1 -> {
+                0 -> {
                    tab.text = "Beranda"
                 }
-                2 -> {
+                1 -> {
                     tab.text = "List"
                 }
             }
