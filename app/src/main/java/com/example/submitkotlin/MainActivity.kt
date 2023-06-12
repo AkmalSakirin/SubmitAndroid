@@ -7,16 +7,21 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.TableLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.example.submitkotlin.databinding.ActivityMainBinding
 import com.example.submitkotlin.fragment.HomeFragment
+import com.example.submitkotlin.fragment.ListFragment
 import com.example.submitkotlin.fragment.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,7 +40,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //setContentView(R.layout.activity_main)
 
+        val tabLayout = findViewById<TabLayout>(R.id.tabsLayout)
+        val viewPager = findViewById<ViewPager2>(R.id.viewPager2)
+
+        val listFragment = arrayListOf(
+            HomeFragment(),
+            ListFragment(),
+        )
+
+        viewPager.adapter = ViewPager(listFragment,supportFragmentManager,lifecycle)
+
+        TabLayoutMediator(tabLayout,viewPager){
+            tab,position ->
+            when(position){
+               1 -> {
+                   tab.text = "Home fragment"
+               }
+                2 -> {
+                    tab.text = "List Fragment"
+                }
+            }
+        }.attach()
 
         bottomNavigation()
         //imageAdapter()
